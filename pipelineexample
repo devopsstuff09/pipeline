@@ -1,0 +1,50 @@
+pipeline{
+    agent any
+    stages{
+        stage("git-checkout"){
+            steps{
+                git 'https://github.com/devopsstuff09/DevOpsClassCodes.git'
+            }
+           
+        }
+        stage("validate"){
+            steps{
+                echo "validating the code"
+                sh "mvn validate"
+            }
+        }
+        stage("compile"){
+            steps{
+                echo "compilinging the code"
+                sh "mvn  compile"
+            }
+        }
+       
+        stage("test"){
+            steps{
+                echo "testing the code"
+                sh "mvn  test"
+            }
+        }
+        stage("package"){
+            steps{
+                echo "packaging the code"
+                sh "mvn  package"
+            }
+        }
+       
+        stage("install"){
+            steps{
+                echo "installinging the code"
+                sh "mvn  install"
+            }
+        }
+        stage("deploy"){
+            steps{
+                echo "deploying on the server"
+                //cmd to deploy
+            }
+        }
+    }
+   
+}
